@@ -34,21 +34,22 @@ public class RequestController {
         double total;
         String warning = null;
 
+        // Choose the operation based on input
         switch (operation) {
-            case "add":
+            case "add": // Addition operation
                 total = num1 + num2;
                 return new CalculationOutput(operation, total, warning);
 
-            case "subtract":
+            case "subtract": // Subtraction operation
                 total = num1 - num2;
                 return new CalculationOutput(operation, total, warning);
 
-            case "multiply":
+            case "multiply": // Multiplication operation
                 total = num1 * num2;
                 return new CalculationOutput(operation, total, warning);
 
-            case "divide":
-                if (num2 == 0) {
+            case "divide": // Division operation
+                if (num2 == 0) { // Prevent division by zero
                     warning = "Cannot divide by zero!";
                     return new CalculationOutput(operation, 0, warning);
                 } else {
@@ -56,7 +57,7 @@ public class RequestController {
                     return new CalculationOutput(operation, total, warning);
                 }
 
-            default:
+            default: // Default warning (error message if the operation is not recognised)
                 warning = "Invalid operation.";
                 return new CalculationOutput(operation, 0, warning);
         }
