@@ -28,4 +28,37 @@ public class RequestController {
     public Person getPerson() {
         return new Person("Paul", 25);
     }
+
+    @GetMapping ("/calculate")
+    public CalculationOutput calculate(@RequestParam double num1, @RequestParam double num2, @RequestParam String operation) {
+        double total;
+        String warning = null;
+
+        switch (operation) {
+            case "add":
+                total = num1 + num2;
+                return new CalculationOutput(operation, total, warning);
+
+            case "subtract":
+                total = num1 - num2;
+                return new CalculationOutput(operation, total, warning);
+
+            case "multiply":
+                total = num1 * num2;
+                return new CalculationOutput(operation, total, warning);
+
+            case "divide":
+                if (num2 == 0) {
+                    warning = "Cannot divide by zero!";
+                    return new CalculationOutput(operation, 0, warning);
+                } else {
+                    total = num1 / num2;
+                    return new CalculationOutput(operation, total, warning);
+                }
+
+            default:
+                warning = "Invalid operation.";
+                return new CalculationOutput(operation, 0, warning);
+        }
+    }
 }
