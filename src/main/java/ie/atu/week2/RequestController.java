@@ -27,12 +27,12 @@ public class RequestController {
     @GetMapping("/person")
     public Person getPerson() {
         return new Person("Paul", 25);
-    }
+    } // Returns a Person object
 
-    @GetMapping ("/calculate")
+    @GetMapping ("/calculate") // Handles GET requests
     public CalculationOutput calculate(@RequestParam double num1, @RequestParam double num2, @RequestParam String operation) {
         double total;
-        String warning = null;
+        String warning = null; // Initialise warning as null
 
         // Choose the operation based on input
         switch (operation) {
